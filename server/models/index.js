@@ -10,6 +10,7 @@ module.exports = {
                       from messages left outer join users on (messages.userid = users.id) \
                       order by messages.id desc';
       db.query(queryStr, function(err, results) {
+        console.log(results);
         callback(err, results);
       });
     },
@@ -18,6 +19,7 @@ module.exports = {
       var queryStr = 'insert into messages(text, userid, roomname) \
                       value (?, (select id from users where username = ? limit 1), ?)';
       db.query(queryStr, params, function(err, results) {
+        console.log(results);
         callback(err, results);
       });
     }
@@ -27,6 +29,7 @@ module.exports = {
       // fetch all users
       var queryStr = 'select * from users';
       db.query(queryStr, function(err, results) {
+        console.log(results);
         callback(err, results);
       });
     },
@@ -34,6 +37,7 @@ module.exports = {
       // create a user
       var queryStr = 'insert into users(username) values (?)';
       db.query(queryStr, params, function(err, results) {
+        console.log(results);
         callback(err, results);
       });
     }
